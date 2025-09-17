@@ -1,13 +1,16 @@
 {
   "name": "pet-angular",
   "version": "0.0.0",
+  "lint-staged": { "*.{ts,html,scss,json,md}": ["prettier --write"] },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "precommit": "lint-staged",
+    "lint": "ng lint",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "private": true,
   "dependencies": {
@@ -27,12 +30,17 @@
     "@types/jasmine": "~5.1.0",
     "angular-eslint": "20.3.0",
     "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "husky": "^9.1.7",
     "jasmine-core": "~5.7.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "lint-staged": "^16.1.6",
+    "prettier": "^3.6.2",
     "typescript": "~5.8.2",
     "typescript-eslint": "8.40.0"
   }
