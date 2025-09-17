@@ -1,7 +1,11 @@
 {
   "name": "pet-angular",
   "version": "0.0.0",
-  "lint-staged": { "*.{ts,html,scss,json,md}": ["prettier --write"] },
+  "lint-staged": {
+    "*.{ts,html,scss,json,md}": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,7 +14,8 @@
     "test": "ng test",
     "precommit": "lint-staged",
     "lint": "ng lint",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
