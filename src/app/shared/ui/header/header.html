@@ -1,0 +1,26 @@
+<header
+  role="banner"
+  class="header"
+>
+  <a
+    routerLink="/"
+    aria-label="На главную страницу"
+    class="header__logo-mobile"
+  >
+    <svg-icon
+      src="assets/icons/logo-mobile.svg"
+      aria-hidden="true"
+      [svgStyle]="{ 'width.px': 40, 'height.px': 40 }"
+    />
+  </a>
+
+  <button aria-label="Открыть меню" class="header__burger-button">
+    <svg-icon
+      src="assets/icons/burger-menu.svg"
+      aria-hidden="true"
+      [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+    />
+  </button>
+
+  <app-header-desktop-nav class="header__desktop-nav" />
+</header>

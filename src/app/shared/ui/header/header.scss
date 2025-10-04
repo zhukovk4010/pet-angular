@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  background-color: var(--sb-modal-background);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+
+  &__burger-button {
+    padding: 0.375rem 0 0.375rem 0.375rem;
+  }
+
+  &__desktop-nav {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    &__desktop-nav {
+      display: flex;
+    }
+
+    &__logo-mobile {
+      display: none;
+    }
+
+    &__burger-button {
+      display: none;
+    }
+  }
+}

@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@use "styles/index";
+
+// Глобальные стили
+:root {
+  font-size: 1em;
+
+  --sb-background: #131316;
+  --sb-modal-background: #1C1C21;
+  --sb-font: #F2F2F3;
+  --sb-font-secondary: #8585AD;
+}
+
+body {
+  background-color: var(--sb-background);
+  color: var(--sb-font);
+}
