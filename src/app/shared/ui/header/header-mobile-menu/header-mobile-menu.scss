@@ -14,7 +14,7 @@
 }
 
 .animation-enter {
-  animation: open-menu 1s normal;
+  animation: open-menu 0.3s ease-out;
 }
 
 @keyframes open-menu {
