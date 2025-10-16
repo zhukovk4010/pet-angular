@@ -14,7 +14,11 @@
     />
   </a>
 
-  <button aria-label="Открыть меню" class="header__burger-button">
+  <button
+    aria-label="Открыть меню"
+    (click)="headerStore.open()"
+    class="header__burger-button"
+  >
     <svg-icon
       src="assets/icons/burger-menu.svg"
       aria-hidden="true"
@@ -23,4 +27,8 @@
   </button>
 
   <app-header-desktop-nav class="header__desktop-nav" />
+
+  @if (headerStore.isMobileMenuOpen()) {
+    <app-header-mobile-menu />
+  }
 </header>
