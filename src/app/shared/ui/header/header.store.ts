@@ -5,7 +5,9 @@ import { Injectable, signal } from '@angular/core';
   })
 export class HeaderStore {
   public readonly isMobileMenuOpen = signal(false);
-  open() { this.isMobileMenuOpen.set(true); }
-  close() { this.isMobileMenuOpen.set(false); }
-  toggle() { this.isMobileMenuOpen.update(v => !v); }
+  public readonly isMobileMenuAccordionOpen = signal(false);
+
+  public openMobileMenu(): void { this.isMobileMenuOpen.set(true); }
+  public closeMobileMenu(): void { this.isMobileMenuOpen.set(false); }
+  public toggleMobileMenuAccordion(): void { this.isMobileMenuAccordionOpen.update(isOpen => !isOpen); }
 }

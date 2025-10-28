@@ -1,3 +1,82 @@
-<div class="mobile-menu" [animate.enter]="'animation-enter'">
-  Мобильная навигация
-</div>
+@if (headerStore.isMobileMenuOpen()) {
+  <nav
+    aria-label="Навигация"
+    class="mobile-menu"
+    animate.enter="open"
+  >
+    <header class="mobile-menu__header">
+      <h1 class="h1">Меню</h1>
+
+      <button
+        aria-label="Закрыть меню"
+        (click)="headerStore.closeMobileMenu()"
+      >
+        <svg-icon
+          src="assets/icons/close.svg"
+          aria-hidden="true"
+          [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+        />
+      </button>
+    </header>
+
+    <div>
+      <button (click)="headerStore.toggleMobileMenuAccordion()" class="accordion-item">
+        <svg-icon
+          src="assets/icons/profile.svg"
+          aria-hidden="true"
+          [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+        />
+
+        <span>Личный кабинет</span>
+
+        <svg-icon
+          src="assets/icons/accordion-triangle.svg"
+          aria-hidden="true"
+          [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+          class="accordion-item__triangle-icon"
+          [class.open]="headerStore.isMobileMenuAccordionOpen()"
+        />
+      </button>
+
+      @if (headerStore.isMobileMenuAccordionOpen()) {
+        <div
+          class="accordion-panel"
+          animate.enter="open"
+          animate.leave="close"
+        >
+          <a routerLink="" class="accordion-item accordion-item--panel">
+            <span>Профиль</span>
+          </a>
+
+          <a routerLink="" class="accordion-item accordion-item--panel">
+            <span>История заказов</span>
+          </a>
+
+          <a routerLink="" class="accordion-item accordion-item--panel">
+            <span>Выход</span>
+          </a>
+        </div>
+      }
+
+      <a routerLink="" class="accordion-item">
+        <svg-icon
+          src="assets/icons/burger.svg"
+          aria-hidden="true"
+          [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+        />
+
+        <span>Конструктор бургеров</span>
+      </a>
+
+      <a routerLink="order-feed" class="accordion-item">
+        <svg-icon
+          src="assets/icons/list.svg"
+          aria-hidden="true"
+          [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+        />
+
+        <span>Лента заказов</span>
+      </a>
+    </div>
+  </nav>
+}

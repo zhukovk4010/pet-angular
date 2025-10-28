@@ -11,6 +11,14 @@
 }
 
 body {
+  font-family: Nunito, sans-serif;
   background-color: var(--sb-background);
   color: var(--sb-font);
+  line-height: 1.15;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Montserrat, sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
 }
