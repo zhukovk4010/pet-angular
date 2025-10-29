@@ -1,1 +1,50 @@
-<p>header-desktop-nav works!</p>
+<a
+  routerLink="/"
+  class="nav-item"
+>
+  <svg-icon
+    src="assets/icons/burger.svg"
+    aria-hidden="true"
+    [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+  />
+
+  <span>Конструктор</span>
+</a>
+
+<a
+  routerLink="order-feed"
+  class="nav-item"
+>
+  <svg-icon
+    src="assets/icons/list.svg"
+    aria-hidden="true"
+    [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+  />
+
+  <span>Лента заказов</span>
+</a>
+
+<a
+  routerLink="/"
+  aria-label="На страницу конструктора"
+  class="logo"
+>
+  <svg-icon
+    src="assets/icons/logo-desktop.svg"
+    aria-hidden="true"
+    [svgStyle]="{ 'width.px': 290, 'height.px': 40 }"
+  />
+</a>
+
+<a
+  routerLink="profile"
+  class="nav-item nav-item--last"
+>
+  <svg-icon
+    src="assets/icons/profile.svg"
+    aria-hidden="true"
+    [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+  />
+
+  <span>Личный кабинет</span>
+</a>

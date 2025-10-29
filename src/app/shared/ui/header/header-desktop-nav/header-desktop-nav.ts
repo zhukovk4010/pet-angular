@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
+import {RouterLink} from "@angular/router";
+import {SvgIconComponent} from 'angular-svg-icon';
 
 @Component({
   selector: 'app-header-desktop-nav',
-  imports: [],
+  imports: [
+    RouterLink,
+    SvgIconComponent
+  ],
   templateUrl: './header-desktop-nav.html',
   styleUrl: './header-desktop-nav.scss'
 })
