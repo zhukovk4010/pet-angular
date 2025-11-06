@@ -1,20 +1,9 @@
-import {inject, Injectable} from '@angular/core';
-import {IngredientsApi} from './ingredients.api';
+import {Injectable} from '@angular/core';
+import {ingredientsData} from './ingredients.data';
 
 @Injectable({
     providedIn: 'root'
   })
 export class ConstructorStore {
-  private readonly ingredientsApiService = inject(IngredientsApi);
-
-  public getIngredients() {
-    this.ingredientsApiService.getIngredients().subscribe({
-      next: (res) => {
-        console.log(res)
-      },
-      error: (err) => {
-        console.log(err)
-      }
-    })
-  }
+  public readonly ingredientsData = ingredientsData;
 }

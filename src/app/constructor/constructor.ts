@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {ConstructorStore} from './data/constructor.store';
 
 @Component({
@@ -7,10 +7,6 @@ import {ConstructorStore} from './data/constructor.store';
   templateUrl: './constructor.html',
   styleUrl: './constructor.scss'
 })
-export class Constructor implements OnInit {
+export class Constructor {
   protected readonly constructorStore = inject(ConstructorStore);
-
-  public ngOnInit(): void {
-    this.constructorStore.getIngredients();
-  }
 }
