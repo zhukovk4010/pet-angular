@@ -6,7 +6,7 @@ import {HeaderStore} from './header.store';
 import {HeaderMobileMenu} from './header-mobile-menu/header-mobile-menu';
 
 @Component({
-  selector: 'app-header',
+  selector: 'sb-header',
   imports: [
     RouterLink,
     SvgIconComponent,

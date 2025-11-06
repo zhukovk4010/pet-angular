@@ -1,0 +1,14 @@
+.page-title {
+  text-align: center;
+}
+
+.ingredients {
+  padding: 1.25rem 0.5rem 4.5rem;
+
+  &__list {
+    padding: 1rem 0 0.75rem;
+    display: flex;
+    gap: 2rem 1rem;
+    flex-wrap: wrap;
+  }
+}

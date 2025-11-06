@@ -8,17 +8,27 @@
   --sb-modal-background: #1C1C21;
   --sb-font: #F2F2F3;
   --sb-font-secondary: #8585AD;
+  --sb-button-gradient-start: #801AB2;
+  --sb-button-gradient-end: #4C4CFF;
+  --sb-button-shadow: #3333FF80;
 }
 
 body {
-  font-family: Nunito, sans-serif;
+  font: normal small-caps 400 1rem/1.15 Nunito, sans-serif;
   background-color: var(--sb-background);
   color: var(--sb-font);
-  line-height: 1.15;
+  font-size: 0.875rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: Montserrat, sans-serif;
+  font-weight: 700;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+button {
+  font: 700 0.875rem/1.5 Montserrat, sans-serif;
+  color: var(--sb-font);
+  cursor: pointer;
 }

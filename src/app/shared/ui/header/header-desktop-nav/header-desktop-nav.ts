@@ -3,7 +3,7 @@ import {RouterLink} from "@angular/router";
 import {SvgIconComponent} from 'angular-svg-icon';
 
 @Component({
-  selector: 'app-header-desktop-nav',
+  selector: 'sb-header-desktop-nav',
   imports: [
     RouterLink,
     SvgIconComponent

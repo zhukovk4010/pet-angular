@@ -1,0 +1,7 @@
+:host {
+  padding: 0.625rem 2rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  background: linear-gradient(30deg, var(--sb-button-gradient-start) 0%, var(--sb-button-gradient-end) 75%,var(--sb-button-gradient-end) 100%);
+  box-shadow: 0 0 0.5rem 0.5rem var(--sb-button-shadow);
+}

@@ -4,7 +4,7 @@ import {HeaderStore} from '../header.store';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-header-mobile-menu',
+  selector: 'sb-header-mobile-menu',
   imports: [
     SvgIconComponent,
     RouterLink

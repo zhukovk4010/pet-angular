@@ -1,0 +1,17 @@
+<img
+  [src]="ingredient().image_mobile"
+  [alt]="ingredient().name + ' картинка'"
+/>
+
+<div class="price">
+  <span class="price__amount">{{ ingredient().price }}</span>
+  <svg-icon
+    src="assets/icons/currency.svg"
+    aria-label="звезд"
+    [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+  />
+</div>
+
+<span class="name">{{ ingredient().name }}</span>
+
+<button class="button">Добавить</button>

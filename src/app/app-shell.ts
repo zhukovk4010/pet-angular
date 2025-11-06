@@ -3,14 +3,14 @@ import { Header } from './shared/ui/header/header';
 import {RouterOutlet} from '@angular/router';
 
 @Component({
-  selector: 'app-constructor',
+  selector: 'sb-constructor',
   imports: [
     RouterOutlet,
     Header
   ],
   template: `
     <div>
-      <app-header />
+      <sb-header />
       <main>
         <router-outlet />
       </main>
