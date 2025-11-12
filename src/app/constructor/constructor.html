@@ -6,24 +6,36 @@
   <h2 class="h2">Булки</h2>
 
   <div class="ingredients__list">
-    @for (ingredient of constructorStore.ingredientsBunsData(); track ingredient._id) {
-      <sb-ingredient-card [ingredient]="ingredient" />
+    @for (ingredient of constructorStore.ingredientsByType()[INGREDIENT_TYPE.BUN]; track ingredient._id) {
+      <sb-ingredient-card
+        [counter]="constructorStore.countById(ingredient._id)"
+        [ingredient]="ingredient"
+        (add)="constructorStore.addBun($event)"
+      />
     }
   </div>
 
   <h2 class="h2">Соусы</h2>
 
   <div class="ingredients__list">
-    @for (ingredient of constructorStore.ingredientsSauceData(); track ingredient._id) {
-      <sb-ingredient-card [ingredient]="ingredient" />
+    @for (ingredient of constructorStore.ingredientsByType()[INGREDIENT_TYPE.SAUCE]; track ingredient._id) {
+      <sb-ingredient-card
+        [counter]="constructorStore.countById(ingredient._id)"
+        [ingredient]="ingredient"
+        (add)="constructorStore.addIngredientToBasket($event)"
+      />
     }
   </div>
 
   <h2 class="h2">Основные ингердиенты</h2>
 
   <div class="ingredients__list">
-    @for (ingredient of constructorStore.ingredientsMainData(); track ingredient._id) {
-      <sb-ingredient-card [ingredient]="ingredient" />
+    @for (ingredient of constructorStore.ingredientsByType()[INGREDIENT_TYPE.MAIN]; track ingredient._id) {
+      <sb-ingredient-card
+        [counter]="constructorStore.countById(ingredient._id)"
+        [ingredient]="ingredient"
+        (add)="constructorStore.addIngredientToBasket($event)"
+      />
     }
   </div>
 </div>

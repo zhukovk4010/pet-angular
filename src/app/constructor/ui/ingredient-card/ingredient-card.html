@@ -14,4 +14,15 @@
 
 <span class="name">{{ ingredient().name }}</span>
 
-<button class="button">Добавить</button>
+<button
+  (click)="add.emit(ingredient())"
+  class="button"
+>
+  Добавить
+</button>
+
+@if (counter(); as counter) {
+  <div class="counter">
+    {{ counter }}
+  </div>
+}

@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component, input, output} from '@angular/core';
 import {Ingredient} from '../../data/models';
 import {SvgIconComponent} from 'angular-svg-icon';
 
@@ -12,4 +12,7 @@ import {SvgIconComponent} from 'angular-svg-icon';
 })
 export class IngredientCard {
   public readonly ingredient = input.required<Ingredient>();
+  public readonly counter = input.required<number>();
+
+  public add = output<Ingredient>();
 }
