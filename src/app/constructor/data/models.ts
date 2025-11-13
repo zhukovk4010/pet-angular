@@ -4,7 +4,7 @@ export const INGREDIENT_TYPE = {
   SAUCE: 'sauce'
 } as const
 
-type IngredientType = (typeof INGREDIENT_TYPE)[keyof typeof INGREDIENT_TYPE]
+export type IngredientType = (typeof INGREDIENT_TYPE)[keyof typeof INGREDIENT_TYPE]
 
 export interface Ingredient {
   _id: string,

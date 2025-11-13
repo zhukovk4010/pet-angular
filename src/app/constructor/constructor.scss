@@ -1,5 +1,25 @@
 .page-title {
   text-align: center;
+  margin-top: 1rem;
+}
+
+.tabs {
+  position: sticky;
+  top: calc(40px + 0.75rem * 2);
+  z-index: 1;
+  display: flex;
+  background-color: var(--sb-background);
+
+  & button {
+    flex: 1;
+    padding: 1rem 0;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.2s ease-out;
+
+    &.active {
+      border-bottom: 2px solid var(--sb-button-gradient-end);
+    }
+  }
 }
 
 .ingredients {

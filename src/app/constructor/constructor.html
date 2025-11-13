@@ -1,6 +1,27 @@
 <h1 class="h1 page-title">Соберите бургер</h1>
 
-<div class="tabs"></div>
+<div class="tabs">
+  <button
+    [class.active]="activeTab() === INGREDIENT_TYPE.BUN"
+    (click)="activeTab.set(INGREDIENT_TYPE.BUN)"
+  >
+    Булки
+  </button>
+
+  <button
+    [class.active]="activeTab() === INGREDIENT_TYPE.SAUCE"
+    (click)="activeTab.set(INGREDIENT_TYPE.SAUCE)"
+  >
+    Соусы
+  </button>
+
+  <button
+    [class.active]="activeTab() === INGREDIENT_TYPE.MAIN"
+    (click)="activeTab.set(INGREDIENT_TYPE.MAIN)"
+  >
+    Начинки
+  </button>
+</div>
 
 <div class="ingredients">
   <h2 class="h2">Булки</h2>
