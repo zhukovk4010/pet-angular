@@ -2,7 +2,7 @@ import {Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {SvgIconComponent} from 'angular-svg-icon';
 import {HeaderDesktopNav} from './header-desktop-nav/header-desktop-nav';
-import {HeaderStore} from './header.store';
+import {HeaderStore} from './data/header.store';
 import {HeaderMobileMenu} from './header-mobile-menu/header-mobile-menu';
 
 @Component({

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderMobileMenu } from './header-mobile-menu';
+import {provideZonelessChangeDetection} from '@angular/core';
+import {provideRouter} from '@angular/router';
 
 describe('HeaderMobileMenu', () => {
   let component: HeaderMobileMenu;
@@ -8,7 +10,8 @@ describe('HeaderMobileMenu', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderMobileMenu]
+      imports: [HeaderMobileMenu],
+      providers: [provideZonelessChangeDetection(), provideRouter([])]
     })
     .compileComponents();
 

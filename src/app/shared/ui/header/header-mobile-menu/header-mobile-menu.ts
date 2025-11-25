@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {SvgIconComponent} from 'angular-svg-icon';
-import {HeaderStore} from '../header.store';
+import {HeaderStore} from '../data/header.store';
 import {RouterLink} from '@angular/router';
 
 @Component({
