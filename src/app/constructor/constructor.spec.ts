@@ -12,8 +12,9 @@ import {IngredientCard} from './ui/ingredient-card/ingredient-card';
 import {Ingredient, INGREDIENT_TYPE, IngredientType} from './data/models';
 import {ConstructorStore} from './data/constructor.store';
 
+// eslint-disable-next-line @angular-eslint/component-selector
 @Component({
-  selector: 'sb-svg-icon',
+  selector: 'svg-icon',
   standalone: true,
   template: '',
 })

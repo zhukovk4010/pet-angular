@@ -19,8 +19,9 @@ const INGREDIENT = {
   __v: 0,
 } as const;
 
+// eslint-disable-next-line @angular-eslint/component-selector
 @Component({
-  selector: 'sb-svg-icon',
+  selector: 'svg-icon',
   standalone: true,
   template: '',
 })
