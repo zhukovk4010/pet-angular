@@ -12,7 +12,7 @@ import {HeaderMobileMenu} from './header-mobile-menu/header-mobile-menu';
 
 // eslint-disable-next-line @angular-eslint/component-selector
 @Component({
-  selector: 'sb-svg-icon',
+  selector: 'svg-icon',
   standalone: true,
   template: '',
 })
