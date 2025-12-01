@@ -1,7 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IngredientCard } from './ingredient-card';
-import {Component, Input, provideZonelessChangeDetection} from '@angular/core';
+import {
+  Component,
+  Input,
+  NO_ERRORS_SCHEMA,
+  provideZonelessChangeDetection
+} from '@angular/core';
 import {provideAngularSvgIcon, SvgIconComponent} from 'angular-svg-icon';
 
 const INGREDIENT = {
@@ -19,7 +24,6 @@ const INGREDIENT = {
   __v: 0,
 } as const;
 
-// eslint-disable-next-line @angular-eslint/component-selector
 @Component({
   selector: 'svg-icon',
   standalone: true,
@@ -37,8 +41,9 @@ describe('IngredientCard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IngredientCard],
-      providers: [provideZonelessChangeDetection(), provideAngularSvgIcon()]
+      imports: [IngredientCard, SvgIconStub],
+      providers: [provideZonelessChangeDetection(), provideAngularSvgIcon()],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .overrideComponent(IngredientCard, {
         remove: { imports: [SvgIconComponent] },
