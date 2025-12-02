@@ -19,6 +19,26 @@ export class ConstructorStore {
     } as const;
   })
 
+  public readonly basketTotal = computed((): number => {
+    let total = 0;
+
+    const bun = this.bun();
+
+    const items = this.items();
+
+    if (bun) {
+      total += bun.price * 2;
+    }
+
+    if (items.length > 0) {
+      items.forEach(ingredient => {
+        total += ingredient.price
+      })
+    }
+
+    return total
+  })
+
   private readonly _countsById = computed(() => {
     const m = new Map<string, number>();
     const b = this.bun();
