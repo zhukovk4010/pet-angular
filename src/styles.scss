@@ -32,3 +32,115 @@ button {
   color: var(--sb-font);
   cursor: pointer;
 }
+
+sb-overlay-host,
+sb-overlay-backdrop,
+sb-overlay-pane {
+  display: block;
+}
+
+.sb-overlay-host {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  pointer-events: none;
+}
+
+.sb-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 60%);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sb-overlay-backdrop--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sb-overlay-pane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(560px, calc(100vw - 2rem));
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.sb-overlay-host[data-variant='bottom-sheet'] .sb-overlay-backdrop {
+  background: transparent;
+}
+
+.sb-overlay-host[data-variant='bottom-sheet'] .sb-overlay-pane {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: auto;
+  width: 100%;
+  transform: translateY(0);
+}
+
+.sb-overlay-host[data-variant='fullscreen'] .sb-overlay-backdrop {
+  background: transparent;
+}
+
+.sb-overlay-host[data-variant='fullscreen'] .sb-overlay-pane {
+  inset: 0;
+  width: 100%;
+  transform: none;
+}
+
+.sb-overlay-host[data-state='closing'] .sb-overlay-backdrop {
+  animation: sb-overlay-backdrop-leave 0.28s ease forwards;
+}
+
+.sb-overlay-host[data-state='closing'][data-variant='modal'] .sb-overlay-pane {
+  animation: sb-overlay-modal-leave 0.28s ease forwards;
+}
+
+.sb-overlay-host[data-state='closing'][data-variant='bottom-sheet'] .sb-overlay-pane {
+  animation: sb-overlay-sheet-leave 0.28s ease forwards;
+}
+
+.sb-overlay-host[data-state='closing'][data-variant='fullscreen'] .sb-overlay-pane {
+  animation: sb-overlay-fullscreen-leave 0.28s ease forwards;
+}
+
+@keyframes sb-overlay-backdrop-leave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sb-overlay-modal-leave {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+}
+
+@keyframes sb-overlay-sheet-leave {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes sb-overlay-fullscreen-leave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

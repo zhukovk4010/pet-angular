@@ -16,7 +16,7 @@
 
   <button
     aria-label="Открыть меню"
-    (click)="headerStore.openMobileMenu()"
+    (click)="onOpen()"
     class="header__burger-button"
   >
     <svg-icon
@@ -27,8 +27,4 @@
   </button>
 
   <sb-header-desktop-nav class="header__desktop-nav" />
-
-  @if (headerStore.isMobileMenuOpen()) {
-    <sb-header-mobile-menu />
-  }
 </header>
