@@ -1,23 +1,29 @@
-import {computed, Injectable, signal} from '@angular/core';
-import {ingredientsData} from './ingredients.data';
-import {Ingredient, INGREDIENT_TYPE} from './models';
+import { computed, Injectable, signal } from '@angular/core';
+import { ingredientsData } from './ingredients.data';
+import { Ingredient, INGREDIENT_TYPE, IngredientType } from './models';
 
 @Injectable({
-    providedIn: 'root'
-  })
+  providedIn: 'root',
+})
 export class ConstructorStore {
   public readonly ingredientsData = signal<readonly Ingredient[]>(ingredientsData);
-  public readonly bun = signal<Ingredient | null>(null)
-  public readonly items = signal<readonly Ingredient[]>([]) // sauce and main
+  public readonly bun = signal<Ingredient | null>(null);
+  public readonly items = signal<readonly Ingredient[]>([]); // sauce and main
+  public readonly sectionOrder: readonly IngredientType[] = [
+    INGREDIENT_TYPE.BUN,
+    INGREDIENT_TYPE.SAUCE,
+    INGREDIENT_TYPE.MAIN,
+  ];
+  public readonly activeTab = signal<IngredientType>(INGREDIENT_TYPE.BUN);
 
   public readonly ingredientsByType = computed(() => {
     const all = this.ingredientsData();
     return {
-      [INGREDIENT_TYPE.BUN]: all.filter(i => i.type === INGREDIENT_TYPE.BUN),
-      [INGREDIENT_TYPE.SAUCE]: all.filter(i => i.type === INGREDIENT_TYPE.SAUCE),
-      [INGREDIENT_TYPE.MAIN]: all.filter(i => i.type === INGREDIENT_TYPE.MAIN),
+      [INGREDIENT_TYPE.BUN]: all.filter((i) => i.type === INGREDIENT_TYPE.BUN),
+      [INGREDIENT_TYPE.SAUCE]: all.filter((i) => i.type === INGREDIENT_TYPE.SAUCE),
+      [INGREDIENT_TYPE.MAIN]: all.filter((i) => i.type === INGREDIENT_TYPE.MAIN),
     } as const;
-  })
+  });
 
   public readonly basketTotal = computed((): number => {
     let total = 0;
@@ -31,13 +37,13 @@ export class ConstructorStore {
     }
 
     if (items.length > 0) {
-      items.forEach(ingredient => {
-        total += ingredient.price
-      })
+      items.forEach((ingredient) => {
+        total += ingredient.price;
+      });
     }
 
-    return total
-  })
+    return total;
+  });
 
   private readonly _countsById = computed(() => {
     const m = new Map<string, number>();
@@ -50,10 +56,38 @@ export class ConstructorStore {
   public countById = (id: string) => this._countsById().get(id) ?? 0;
 
   public addBun(ingredient: Ingredient): void {
-    this.bun.set(ingredient)
+    this.bun.set(ingredient);
   }
 
   public addIngredientToBasket(ingredient: Ingredient): void {
-    this.items.update(ingredients => [...ingredients, ingredient])
+    this.items.update((ingredients) => [...ingredients, ingredient]);
+  }
+
+  public setActiveTab(type: IngredientType): void {
+    if (this.activeTab() !== type) {
+      this.activeTab.set(type);
+    }
+  }
+
+  public syncActiveTabWithViewport(
+    sections: readonly { type: IngredientType; top: number }[],
+    targetLineY: number,
+  ): void {
+    if (sections.length === 0) {
+      return;
+    }
+
+    let closest = sections[0];
+    let minDistance = Number.POSITIVE_INFINITY;
+
+    for (const section of sections) {
+      const distance = Math.abs(section.top - targetLineY);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closest = section;
+      }
+    }
+
+    this.setActiveTab(closest.type);
   }
 }

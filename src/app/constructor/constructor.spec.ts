@@ -7,13 +7,14 @@ import {
   Input,
   Output,
   provideZonelessChangeDetection,
+  signal,
 } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { IngredientCard } from './ui/ingredient-card/ingredient-card';
 import { Ingredient, INGREDIENT_TYPE, IngredientType } from './data/models';
 import { ConstructorStore } from './data/constructor.store';
 
-// eslint-disable-next-line @angular-eslint/component-selector
+
 @Component({
   selector: 'svg-icon',
   standalone: true,
@@ -39,34 +40,39 @@ class IngredientCardStubComponent {
 describe('Constructor', () => {
   let component: Constructor;
   let fixture: ComponentFixture<Constructor>;
-  let storeSpy: jasmine.SpyObj<ConstructorStore>;
+  let storeMock: ConstructorStore;
 
   const bunsMock: Ingredient[] = [];
   const saucesMock: Ingredient[] = [];
   const mainsMock: Ingredient[] = [];
 
   beforeEach(async () => {
-    storeSpy = jasmine.createSpyObj<ConstructorStore>('ConstructorStore', [
-      'ingredientsByType',
-      'addIngredientToBasket',
-      'addBun',
-      'basketTotal',
-      'countById',
-    ]);
+    const activeTab = signal<IngredientType>(INGREDIENT_TYPE.BUN);
 
-    storeSpy.ingredientsByType.and.returnValue({
-      [INGREDIENT_TYPE.BUN]: bunsMock,
-      [INGREDIENT_TYPE.SAUCE]: saucesMock,
-      [INGREDIENT_TYPE.MAIN]: mainsMock,
-    } as Record<IngredientType, Ingredient[]>);
-    storeSpy.basketTotal.and.returnValue(0);
-    storeSpy.countById.and.returnValue(0);
+    storeMock = {
+      ingredientsByType: jasmine.createSpy().and.returnValue({
+        [INGREDIENT_TYPE.BUN]: bunsMock,
+        [INGREDIENT_TYPE.SAUCE]: saucesMock,
+        [INGREDIENT_TYPE.MAIN]: mainsMock,
+      } as Record<IngredientType, Ingredient[]>),
+      addIngredientToBasket: jasmine.createSpy(),
+      addBun: jasmine.createSpy(),
+      basketTotal: jasmine.createSpy().and.returnValue(0),
+      countById: jasmine.createSpy().and.returnValue(0),
+      sectionOrder: [INGREDIENT_TYPE.BUN, INGREDIENT_TYPE.SAUCE, INGREDIENT_TYPE.MAIN],
+      activeTab,
+      setActiveTab: (type: IngredientType) => activeTab.set(type),
+      syncActiveTabWithViewport: jasmine.createSpy(),
+      bun: signal<Ingredient | null>(null),
+      items: signal<readonly Ingredient[]>([]),
+      ingredientsData: signal<readonly Ingredient[]>([]),
+    } as unknown as ConstructorStore;
 
     await TestBed.configureTestingModule({
       imports: [Constructor, IngredientCardStubComponent],
       providers: [
         provideZonelessChangeDetection(),
-        { provide: ConstructorStore, useValue: storeSpy },
+        { provide: ConstructorStore, useValue: storeMock },
       ],
     })
       .overrideComponent(IngredientCard, {

@@ -2,21 +2,21 @@
 
 <div #tabs class="tabs">
   <button
-    [class.active]="activeTab() === INGREDIENT_TYPE.BUN"
+    [class.active]="constructorStore.activeTab() === INGREDIENT_TYPE.BUN"
     (click)="scrollToSection(INGREDIENT_TYPE.BUN)"
   >
     Булки
   </button>
 
   <button
-    [class.active]="activeTab() === INGREDIENT_TYPE.SAUCE"
+    [class.active]="constructorStore.activeTab() === INGREDIENT_TYPE.SAUCE"
     (click)="scrollToSection(INGREDIENT_TYPE.SAUCE)"
   >
     Соусы
   </button>
 
   <button
-    [class.active]="activeTab() === INGREDIENT_TYPE.MAIN"
+    [class.active]="constructorStore.activeTab() === INGREDIENT_TYPE.MAIN"
     (click)="scrollToSection(INGREDIENT_TYPE.MAIN)"
   >
     Начинки

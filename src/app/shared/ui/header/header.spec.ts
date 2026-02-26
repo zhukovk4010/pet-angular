@@ -10,7 +10,6 @@ import {provideAngularSvgIcon, SvgIconComponent} from 'angular-svg-icon';
 import {HeaderDesktopNav} from './header-desktop-nav/header-desktop-nav';
 import {HeaderMobileMenu} from './header-mobile-menu/header-mobile-menu';
 
-// eslint-disable-next-line @angular-eslint/component-selector
 @Component({
   selector: 'svg-icon',
   standalone: true,

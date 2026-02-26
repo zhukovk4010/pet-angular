@@ -6,7 +6,6 @@ import {
   effect,
   inject,
   QueryList,
-  signal,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
@@ -27,11 +26,6 @@ export class Constructor implements AfterViewInit {
   protected readonly constructorStore = inject(ConstructorStore);
   private readonly _overlayService = inject(Overlay);
   private readonly destroyRef = inject(DestroyRef);
-  private readonly sectionOrder: readonly IngredientType[] = [
-    INGREDIENT_TYPE.BUN,
-    INGREDIENT_TYPE.SAUCE,
-    INGREDIENT_TYPE.MAIN,
-  ];
   private scrollRafId: number | null = null;
 
   @ViewChildren('sectionTitle', { read: ElementRef })
@@ -39,8 +33,6 @@ export class Constructor implements AfterViewInit {
 
   @ViewChild('tabs', { read: ElementRef })
   private readonly tabsRef?: ElementRef<HTMLDivElement>;
-
-  protected activeTab = signal<IngredientType>(INGREDIENT_TYPE.BUN);
 
   private bottomSheetRef: OverlayHandle<BasketBottomSheet> | null = null;
   protected readonly INGREDIENT_TYPE = INGREDIENT_TYPE;
@@ -74,7 +66,7 @@ export class Constructor implements AfterViewInit {
   }
 
   protected scrollToSection(type: IngredientType): void {
-    this.activeTab.set(type);
+    this.constructorStore.setActiveTab(type);
     this.getSectionHeading(type)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
@@ -114,36 +106,20 @@ export class Constructor implements AfterViewInit {
   }
 
   private syncActiveTabWithViewport(): void {
-    const sections = this.sectionOrder
+    const targetLine = this.getTargetLineY();
+    const sections = this.constructorStore.sectionOrder
       .map((type) => ({ type, element: this.getSectionHeading(type) }))
       .filter(
         (item): item is { type: IngredientType; element: HTMLHeadingElement } =>
           item.element !== null,
-      );
+      )
+      .map(({ type, element }) => ({ type, top: element.getBoundingClientRect().top }));
 
-    if (sections.length === 0) {
-      return;
-    }
-
-    const targetLine = this.getTargetLineY();
-    let closest = sections[0];
-    let minDistance = Number.POSITIVE_INFINITY;
-
-    for (const section of sections) {
-      const distance = Math.abs(section.element.getBoundingClientRect().top - targetLine);
-      if (distance < minDistance) {
-        minDistance = distance;
-        closest = section;
-      }
-    }
-
-    if (this.activeTab() !== closest.type) {
-      this.activeTab.set(closest.type);
-    }
+    this.constructorStore.syncActiveTabWithViewport(sections, targetLine);
   }
 
   private getSectionHeading(type: IngredientType): HTMLHeadingElement | null {
-    const index = this.sectionOrder.indexOf(type);
+    const index = this.constructorStore.sectionOrder.indexOf(type);
     if (index === -1) {
       return null;
     }

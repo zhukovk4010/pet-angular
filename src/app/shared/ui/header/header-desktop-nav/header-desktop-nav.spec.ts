@@ -5,7 +5,6 @@ import {Component, Input, provideZonelessChangeDetection} from '@angular/core';
 import {provideRouter} from '@angular/router';
 import {SvgIconComponent} from 'angular-svg-icon';
 
-// eslint-disable-next-line @angular-eslint/component-selector
 @Component({
   selector: 'svg-icon',
   standalone: true,
